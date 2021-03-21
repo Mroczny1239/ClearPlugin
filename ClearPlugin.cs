@@ -1,11 +1,6 @@
 ﻿using Rocket.API.Collections;
 using Rocket.Core.Plugins;
 using Rocket.Unturned.Chat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Logger = Rocket.Core.Logging.Logger;
 
@@ -13,18 +8,17 @@ namespace Mroczny.ClearPlugin
 {
     public class ClearPlugin : RocketPlugin<ClearPluginConfiguration>
     {
-        public static ClearPlugin Instance;
-        string Version = "1.0.3";
-        string Creator = "Mroczny";
+        public static ClearPlugin Instance { get; private set; }
+        const string Creator = "Mroczny";
         public Color MessageColor { get; set; }
 
         protected override void Load()
         {
             Instance = this;
             MessageColor = UnturnedChat.GetColorFromName(Configuration.Instance.MessageColor, Color.green);
-            Logger.LogWarning($"Loading {Name} {Version}...");
+
             Logger.LogWarning($"Plugin Made By {Creator}");
-            Logger.LogWarning($"{Name} has been loaded!");
+            Logger.LogWarning($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 
         protected override void Unload()
