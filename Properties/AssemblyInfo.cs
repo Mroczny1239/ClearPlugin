@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mroczny.ClearPlugin.Properties")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ClearPlugin")]
+[assembly: AssemblyDescription("Plugin for cleaning inventory, ground items & vehicles.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mroczny.ClearPlugin.Properties")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyProduct("Mroczny.ClearPlugin")]
+[assembly: AssemblyCopyright("Copyright © Mroczny 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

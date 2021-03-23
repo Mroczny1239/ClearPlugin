@@ -5,18 +5,13 @@ using System.Collections.Generic;
 
 namespace Mroczny.ClearPlugin.Commands
 {
-    public class CommandClearItems : IRocketCommand
+    public class ClearItems : IRocketCommand
     {
         public AllowedCaller AllowedCaller => AllowedCaller.Both;
-
         public string Name => "clearitems";
-
-        public string Help => "clear all items on ground";
-
+        public string Help => "Clear all items that lay on the ground";
         public string Syntax => "";
-
-        public List<string> Aliases => new List<string>() { "cleari" };
-
+        public List<string> Aliases => new List<string> { "cleari" };
         public List<string> Permissions => new List<string>();
 
         public void Execute(IRocketPlayer caller, string[] command)

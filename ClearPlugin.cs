@@ -17,7 +17,7 @@ namespace Mroczny.ClearPlugin
             Instance = this;
             MessageColor = UnturnedChat.GetColorFromName(Configuration.Instance.MessageColor, Color.green);
 
-            Logger.LogWarning($"Plugin Made By {Creator}");
+            Logger.LogWarning($"Plugin made by {Creator}");
             Logger.LogWarning($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 

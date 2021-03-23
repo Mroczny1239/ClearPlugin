@@ -68,9 +68,9 @@
   <ItemGroup>
     <Compile Include="ClearPlugin.cs" />
     <Compile Include="ClearPluginConfiguration.cs" />
-    <Compile Include="Commands\CommandClearInventory.cs" />
-    <Compile Include="Commands\CommandClearItems.cs" />
-    <Compile Include="Commands\CommandClearVehicles.cs" />
+    <Compile Include="Commands\ClearInventory.cs" />
+    <Compile Include="Commands\ClearItems.cs" />
+    <Compile Include="Commands\ClearVehicles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

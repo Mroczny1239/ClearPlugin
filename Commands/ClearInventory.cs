@@ -3,30 +3,26 @@ using Rocket.Unturned.Chat;
 using Rocket.Unturned.Player;
 using SDG.Unturned;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Mroczny.ClearPlugin.Commands
 {
-    public class CommandClearInventory : IRocketCommand
+    public class ClearInventory : IRocketCommand
     {
         public AllowedCaller AllowedCaller => AllowedCaller.Both;
-
         public string Name => "clearinventory";
-
-        public string Help => "clear inventory";
-
+        public string Help => "Clear your inventory!";
         public string Syntax => "<player>";
-
-        public List<string> Aliases => new List<string>() { "ci" };
-
+        public List<string> Aliases => new List<string> { "ci" };
         public List<string> Permissions => new List<string>();
-
+        
         public void Execute(IRocketPlayer caller, string[] command)
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
 
             if (command.Length == 0)
             {
-                ClearInventory(player);
+                ClearPlayerInventory(player);
                 UnturnedChat.Say(caller, ClearPlugin.Instance.Translate("ClearInventorySuccess"), ClearPlugin.Instance.MessageColor);
                 return;
             }
@@ -35,23 +31,23 @@ namespace Mroczny.ClearPlugin.Commands
 
             if (target != null)
             {
-                ClearInventory(UnturnedPlayer.FromName(command[0]));
+                ClearPlayerInventory(UnturnedPlayer.FromName(command[0]));
                 UnturnedChat.Say(caller, ClearPlugin.Instance.Translate("ClearInventoryPlayerSuccess", player.DisplayName), ClearPlugin.Instance.MessageColor);
             }
             else
             {
-                UnturnedChat.Say(caller, ClearPlugin.Instance.Translate("PlayerNotFound"), UnityEngine.Color.red);
+                UnturnedChat.Say(caller, ClearPlugin.Instance.Translate("PlayerNotFound"), Color.red);
             }
         }
 
-        private void ClearInventory(UnturnedPlayer player)
+        private void ClearPlayerInventory(UnturnedPlayer player)
         {
             var playerInv = player.Inventory;
 
             player.Player.channel.send("tellSlot", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER,
-                (byte)0, (byte)0, EMPTY_BYTE_ARRAY);
+                (byte)0, (byte)0, EmptyByteArray);
             player.Player.channel.send("tellSlot", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER,
-                (byte)1, (byte)0, EMPTY_BYTE_ARRAY);
+                (byte)1, (byte)0, EmptyByteArray);
 
 
             for (byte page = 0; page < PlayerInventory.PAGES; page++)
@@ -67,36 +63,36 @@ namespace Mroczny.ClearPlugin.Commands
                 }
             }
 
-            System.Action removeUnequipped = () =>
+            void RemoveUnequipped()
             {
                 for (byte i = 0; i < playerInv.getItemCount(2); i++)
                 {
                     playerInv.removeItem(2, 0);
                 }
-            };
+            }
 
-            player.Player.clothing.askWearBackpack(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearBackpack(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearGlasses(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearGlasses(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearHat(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearHat(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearPants(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearPants(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearMask(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearMask(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearShirt(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearShirt(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
 
-            player.Player.clothing.askWearVest(0, 0, EMPTY_BYTE_ARRAY, true);
-            removeUnequipped();
+            player.Player.clothing.askWearVest(0, 0, EmptyByteArray, true);
+            RemoveUnequipped();
         }
 
-        public readonly byte[] EMPTY_BYTE_ARRAY = new byte[0];
+        public readonly byte[] EmptyByteArray = new byte[0];
     }
 }
