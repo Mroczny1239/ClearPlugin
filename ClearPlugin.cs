@@ -9,6 +9,7 @@ namespace Mroczny.ClearPlugin
     public class ClearPlugin : RocketPlugin<ClearPluginConfiguration>
     {
         public static ClearPlugin Instance { get; private set; }
+        const string Version = "1.0.4";
         const string Creator = "Mroczny";
         public Color MessageColor { get; set; }
 
@@ -16,9 +17,8 @@ namespace Mroczny.ClearPlugin
         {
             Instance = this;
             MessageColor = UnturnedChat.GetColorFromName(Configuration.Instance.MessageColor, Color.green);
-
+            Logger.LogWarning($"{Name} {Version} has been loaded!");
             Logger.LogWarning($"Plugin Made By {Creator}");
-            Logger.LogWarning($"{Name} {Assembly.GetName().Version} has been loaded!");
         }
 
         protected override void Unload()
