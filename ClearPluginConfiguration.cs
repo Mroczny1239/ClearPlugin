@@ -11,7 +11,7 @@ namespace Mroczny.ClearPlugin
         public void LoadDefaults()
         {
             MessageColor = "magenta";
-            AutoClearVehiclesEnabled = true;
+            AutoClearVehiclesEnabled = false;
             AutoClearVehiclesIntervalSeconds = 300f;
         }
     }
