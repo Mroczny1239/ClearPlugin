@@ -1,15 +1,16 @@
-﻿using Rocket.API.Collections;
+using Rocket.API.Collections;
 using Rocket.Core.Plugins;
 using Rocket.Unturned.Chat;
 using UnityEngine;
 using Logger = Rocket.Core.Logging.Logger;
+using SDG.Unturned;
 
 namespace Mroczny.ClearPlugin
 {
     public class ClearPlugin : RocketPlugin<ClearPluginConfiguration>
     {
         public static ClearPlugin Instance { get; private set; }
-        const string Version = "1.0.5";
+        const string Version = "1.0.7";
         const string Creator = "Mroczny";
         public Color MessageColor { get; set; }
 
@@ -21,7 +22,7 @@ namespace Mroczny.ClearPlugin
             Logger.LogWarning($"Plugin Made By {Creator}");
             if (Configuration.Instance.AutoClearVehiclesEnabled)
             {
-                InvokeRepeating("ClearVehicles", Configuration.Instance.AutoClearVehiclesIntervalSeconds, Configuration.Instance.AutoClearVehiclesIntervalSeconds);
+                InvokeRepeating("ClearVehicles", Configuration.Instance.AutoClearVehiclesDuration, Configuration.Instance.AutoClearVehiclesDuration);
             }
         }
 
@@ -39,7 +40,7 @@ namespace Mroczny.ClearPlugin
             {"ClearItemsSuccess","All items cleared!"},
             {"ClearVehiclesSuccess","All vehicles cleared!"}
         };
-        
+
         public void ClearVehicles()
         {
             VehicleManager.askVehicleDestroyAll();
